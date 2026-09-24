@@ -6,13 +6,14 @@ import Info from "./components/info";
 import Coleccion from "./components/coleccion"
 import Usuario from "./components/usuario"
 import Pokemon from "./components/pokemon"
+import './App.css'
 
 function App() {
 
   return (
     <>
       <Router>
-        <nav>
+        <nav className='c-menu'>
           <Link to="/">Inicio</Link>
           <Link to="/coleccion">Coleccion</Link>
           <Link to="/favoritos">Favoritos</Link>
