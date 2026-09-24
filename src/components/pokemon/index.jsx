@@ -28,6 +28,9 @@ function Pokemon() {
         <p>{datapoke.id}</p>
         <p>Altura: {datapoke.height/ 10} m / Peso: {datapoke.weight/ 10} kg</p>
 
+        {datapoke.types && (
+          <p>Tipo(s): {datapoke.types.map(t => t.type.name).join(', ')}</p>
+        )}
         <p>hp: {datapoke.stats[0].base_stat}</p>
         <p>Velocidad: {datapoke.stats[5].base_stat}</p>
         <p>Ataque: {datapoke.stats[1].base_stat} Defensa: {datapoke.stats[2].base_stat}</p>
