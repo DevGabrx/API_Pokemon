@@ -5,6 +5,14 @@ import './style.css'
 function Pokemon() {
     const { name } = useParams(); 
     const [datapoke, setDatapoke] = useState([]);
+    const [favoritos, setFavoritos] = useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem('favoritos') || '[]');
+        } catch {
+            return [];
+        }
+    });
+    const esFavorito = favoritos.some(p => p.id === datapoke.id);
 
     useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -14,8 +22,22 @@ function Pokemon() {
     }, [name]); 
     console.log(datapoke)
     
+        const toggleFavorito = () => {
+        let nuevosFavoritos;
+        if (esFavorito) {
+        nuevosFavoritos = favoritos.filter(p => p.id !== datapoke.id);
+        } else {
+        nuevosFavoritos = [...favoritos, { id: datapoke.id, nombre: datapoke.name }];
+        }
+        setFavoritos(nuevosFavoritos);
+        localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+    };
+
+
     if (!datapoke || !datapoke.id) return <p>Cargando...</p>;
     return (
+
+      <>
         <div>
         <p>{datapoke.id}</p>
         <h1>{datapoke.name}</h1>
@@ -37,6 +59,12 @@ function Pokemon() {
         <p>Ataque Especial: {datapoke.stats[3].base_stat} Defensa Especial: {datapoke.stats[4].base_stat}</p>
 
         </div>
+
+         <button onClick={toggleFavorito}>
+            {esFavorito ? '❤️' : '🤍'}
+        </button>
+
+        </>
     )
 }
 
