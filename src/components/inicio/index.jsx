@@ -45,6 +45,7 @@ function Inicio() {
         console.error('Error:', error)
       }
     }
+    
 
     cargarPokemons()
   }, [tipopoke])
