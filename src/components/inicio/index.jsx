@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import './style.css'
 
 function Inicio() {
-
   const navigate = useNavigate();
   const [todoslospokes, setTodoslospokes] = useState([]);
-  const [busqueda,setBusqueda] = useState('')
-  const [tipopoke,setTipopoke] = useState('All')
+  const [busqueda, setBusqueda] = useState('')
+  const [tipopoke, setTipopoke] = useState('All')
 
-
-    const tipos = [
+  const tipos = [
     'All',
     'normal', 'fighting', 'flying', 'poison', 'ground', 'rock',
     'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric',
     'psychic', 'ice', 'dragon', 'dark', 'fairy', 'stellar', 'shadow', 'unknown'
   ]
+
   let resultados = todoslospokes
 
   if (busqueda.length >= 3 && isNaN(busqueda)) {
@@ -25,9 +24,7 @@ function Inicio() {
     );
   }
 
-  
-
-    useEffect(() => {
+  useEffect(() => {
     const cargarPokemons = async () => {
       try {
         if (tipopoke === 'All') {
@@ -45,52 +42,68 @@ function Inicio() {
         console.error('Error:', error)
       }
     }
-    
 
     cargarPokemons()
   }, [tipopoke])
-    
 
+  if (todoslospokes.length === 0) {
+    return <p className="loading-page">Cargando Pokedex...</p>;
+  }
 
-
-     if (todoslospokes.length === 0) {
-    return <p>Cargando...</p>;
-  }   
   return (
+    <main className="inicio">
+      <header className="inicio-hero">
+        <p className="inicio-etiqueta">PokeAPI Explorer</p>
+        <h1>Encuentra tu proximo Pokemon</h1>
+        <p>Filtra por tipo, busca por nombre y entra al detalle para guardar favoritos.</p>
+      </header>
 
-    <>
+      <div className="inicio-panel">
+        <input
+          type="text"
+          placeholder='Buscar Pokemon.....'
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          className="c-buscador"
+        />
 
-      <div className="c-filtro">
-        {tipos.map((unTipo, index) => (
-          <button type="button" key={index} onClick={() => setTipopoke(unTipo)}>
-            {unTipo}
-          </button>
-        ))}
+        <div className="c-filtro" aria-label="Filtrar por tipo">
+          {tipos.map((unTipo) => (
+            <button
+              type="button"
+              key={unTipo}
+              className={tipopoke === unTipo ? 'activo' : ''}
+              onClick={() => setTipopoke(unTipo)}
+            >
+              {unTipo}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <input
-        type="text"
-        placeholder="Buscar Pokémon"
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-        className="c-buscador"
-      />
-
-      {resultados.map((pokemon) => (
-        <div key={pokemon.name} onClick={() => navigate(`/pokemon/${pokemon.name}`)}>
-          <p>{pokemon.url.split('/')[6]}</p>
-          <p>{pokemon.name}</p>
-
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split('/')[6]}.png`}
-            alt={`Pokémon ${pokemon.name}`}
-            width="auto"
-            height="60"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </>
+      <section className="c-lista" aria-label="Lista de Pokemon">
+        {resultados.map((pokemon) => {
+          const id = pokemon.url.split('/')[6]
+          return (
+            <article
+              key={pokemon.name}
+              className="c-lista-pokemon"
+              onClick={() => navigate(`/pokemon/${pokemon.name}`)}
+            >
+              <span className="pokemon-id">#{id}</span>
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                alt={`Pokemon ${pokemon.name}`}
+                width="120"
+                height="120"
+                loading="lazy"
+              />
+              <h2>{pokemon.name}</h2>
+            </article>
+          )
+        })}
+      </section>
+    </main>
   )
 }
 

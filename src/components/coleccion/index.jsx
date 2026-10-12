@@ -23,7 +23,7 @@ function Coleccion() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=1025')
       .then((respuesta) => respuesta.json())
       .then((datos) => setPokemones(datos.results))
-      .catch((error) => console.error('Error al cargar Pokémon:', error));
+      .catch((error) => console.error('Error al cargar Pok�mon:', error));
   }, []);
 
   const capturarAleatorios = () => {
@@ -48,7 +48,7 @@ function Coleccion() {
     <>
     
      <main className="coleccion">
-      <h1 className="coleccion-titulo">Colección</h1>
+      <h1 className="coleccion-titulo">Coleccion</h1>
       <p className="coleccion-contador">{listaCapturados.length} <span>/ {totalPokes}</span></p>
       <button
         className="coleccion-boton"
@@ -58,7 +58,7 @@ function Coleccion() {
         4 nuevos
       </button>
 
-      {nuevos.length > 0 && <h2 className="coleccion-subtitulo">Tus nuevos Pokémon</h2>}
+      {nuevos.length > 0 && <h2 className="coleccion-subtitulo">Tus nuevos Pokemon</h2>}
       <section className="coleccion-nuevos">
         {nuevos.map(({ id, repetido }, indice) => (
           <div
@@ -69,7 +69,7 @@ function Coleccion() {
             <p>{id}</p>
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-              alt={pokemones[id - 1]?.name || `Pokémon ${id}`}
+              alt={pokemones[id - 1]?.name || `Pokemon ${id}`}
               width="60"
               height="60"
             />
