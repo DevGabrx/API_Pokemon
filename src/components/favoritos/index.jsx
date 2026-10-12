@@ -22,8 +22,8 @@ function Favoritos() {
 
       {favoritos.length === 0 ? (
         <section className="favoritos-vacio">
-          <h2>No tienes Pokémon favoritos todavía</h2>
-          <p>Entra al detalle de un Pokémon y toca el corazón para guardarlo aquí.</p>
+          <h2>No tienes Pokï¿½mon favoritos todavï¿½a</h2>
+          <p>Entra al detalle de un Pokï¿½mon y toca el corazï¿½n para guardarlo aquï¿½.</p>
         </section>
       ) : (
         <section className="favoritos-lista">
@@ -36,7 +36,7 @@ function Favoritos() {
               <span>#{pokemon.id}</span>
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-                alt={`Pokémon ${pokemon.nombre}`}
+                alt={`Pokemon ${pokemon.nombre}`}
                 width="120"
                 height="120"
                 loading="lazy"
