@@ -23,7 +23,7 @@ function Coleccion() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=1025')
       .then((respuesta) => respuesta.json())
       .then((datos) => setPokemones(datos.results))
-      .catch((error) => console.error('Error al cargar Pok�mon:', error));
+      .catch((error) => console.error('Error al cargar Pokemon:', error));
   }, []);
 
   const capturarAleatorios = () => {

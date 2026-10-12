@@ -13,7 +13,7 @@ function App() {
     <Router>
       <nav className='c-menu'>
         <Link to="/">Inicio</Link>
-        <Link to="/coleccion">Colección</Link>
+        <Link to="/coleccion">Coleccion</Link>
         <Link to="/favoritos">Favoritos</Link>
         <Link to="/info">Info</Link>
         <Link to="/usuario">Usuario</Link>
