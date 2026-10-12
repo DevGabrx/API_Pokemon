@@ -22,8 +22,8 @@ function Favoritos() {
 
       {favoritos.length === 0 ? (
         <section className="favoritos-vacio">
-          <h2>No tienes Pok�mon favoritos todav�a</h2>
-          <p>Entra al detalle de un Pok�mon y toca el coraz�n para guardarlo aqu�.</p>
+          <h2>No tienes Pokemon favoritos todavia</h2>
+          <p>Entra al detalle de un Pokemon y toca el corazon para guardarlo aqui.</p>
         </section>
       ) : (
         <section className="favoritos-lista">

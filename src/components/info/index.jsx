@@ -11,6 +11,7 @@ function Info() {
         <h3>Aplicacion realizada por el estudiante: Gabriel Pino</h3>
         <img id="yo" src={yoxd} alt="Gabriel Pino" />
         <p><strong>Aplicaciones moviles | 2do Corte</strong></p>
+        <a href='https://github.com/DevGabrx/API_Pokemon' target='no_blank'>Aqui encuentras el repositorio de Github</a>
       </div>
 
       <section className="info-card">
